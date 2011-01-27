@@ -135,7 +135,7 @@ function convertToSQL(data) {
 
 
 function convertToXML(data) {
-  var html = ["&lt;rows&gt;<br/>"]; // start the HTML output string
+  var html = ["&lt;?xml version=\"1.0\" encoding=\"UTF-8\" ?&gt;<br/>&lt;rows&gt;<br/>"]; // start the HTML output string
   for (var row = 0; row < data.getNumberOfRows(); row++) {
     var rowObj = [];
     for (var col = 0; col < data.getNumberOfColumns(); col++) {
@@ -146,7 +146,7 @@ function convertToXML(data) {
     formattedValue=formattedValue.split("&").join("&amp;amp;").split("<" ).join("&amp;lt;" ).split(">" ).join("&amp;gt;" ).split("\"" ).join("&amp;quot;").split("'").join("&amp;apos;");
     
 
-    rowObj.push("&nbsp; &nbsp; &lt;" + columnLabel + "&gt;" + formattedValue + "&lt;/" + columnLabel + "&ft;<br/>");
+    rowObj.push("&nbsp; &nbsp; &lt;" + columnLabel + "&gt;" + formattedValue + "&lt;/" + columnLabel + "&gt;<br/>");
     }
   html.push("&nbsp; &lt;row&gt;<br/>" + rowObj.join("") + "&nbsp; &lt;/row&gt;<br/>");
   }
