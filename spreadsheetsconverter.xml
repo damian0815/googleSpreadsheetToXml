@@ -135,24 +135,24 @@ function convertToSQL(data) {
 
 
 function convertToXML(data) {
-  var html = ["<pre>hello<rows>\n"]; // start the HTML output string
+  var html = ["&lt;rows&gt;<br/>"]; // start the HTML output string
   for (var row = 0; row < data.getNumberOfRows(); row++) {
     var rowObj = [];
     for (var col = 0; col < data.getNumberOfColumns(); col++) {
       var columnLabel = data.getColumnLabel(col);
 
       var formattedValue = data.getFormattedValue(row, col);
-	  //formattedValue = escapeHtml(formattedValue);
-	  formattedValue=formattedValue.split("&").join("&amp;").split( "<").join("&lt;").split(">").join("&gt;").split("\"").join("&quot;").split("'").join("&apos;");
+    //formattedValue = escapeHtml(formattedValue);
+    formattedValue=formattedValue.split("&").join("&amp;amp;").split("<" ).join("&amp;lt;" ).split(">" ).join("&amp;gt;" ).split("\"" ).join("&amp;quot;").split("'").join("&amp;apos;");
+    
 
-	  rowObj.push("    <" + columnLabel + ">" + formattedValue + "</" + columnLabel + ">\n");
+    rowObj.push("&nbsp; &nbsp; &lt;" + columnLabel + "&gt;" + formattedValue + "&lt;/" + columnLabel + "&ft;<br/>");
     }
-	html.push("  <row>\n" + rowObj.join("") + "  </row>\n");
+  html.push("&nbsp; &lt;row&gt;<br/>" + rowObj.join("") + "&nbsp; &lt;/row&gt;<br/>");
   }
-  html.push("</rows></pre>");
+  html.push("&lt;/rows&gt;");
   return html.join("");
 }
-
 /**
 * Define any supporting code you need
 * (like this handy function to escape special characters for html output):
