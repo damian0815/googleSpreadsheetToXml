@@ -135,7 +135,7 @@ function convertToSQL(data) {
 
 
 function convertToXML(data) {
-  var html = ["<pre><rows>\n"]; // start the HTML output string
+  var html = ["<pre>hello<rows>\n"]; // start the HTML output string
   for (var row = 0; row < data.getNumberOfRows(); row++) {
     var rowObj = [];
     for (var col = 0; col < data.getNumberOfColumns(); col++) {
