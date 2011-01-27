@@ -144,9 +144,9 @@ function convertToXML(data) {
       var formattedValue = data.getFormattedValue(row, col);
       formattedValue = escapeHtml(formattedValue);
 
-	  rowObj.push("&nbsp;&nbsp;&lt;" + columnLabel + "&gt;" + formattedValue + "&lt;/" + columnLabel + "&gt;<br/>");
+	  rowObj.push("&nbsp; &nbsp; &nbsp; &nbsp; &lt;" + columnLabel + "&gt;" + formattedValue + "&lt;/" + columnLabel + "&gt;<br/>");
     }
-	html.push("&nbsp;&lt;row&gt;<br>" + rowObj.join("") + "&nbsp;&lt;/row&gt;<br/>");
+	html.push("&nbsp; &nbsp; &lt;row&gt;<br>" + rowObj.join("") + "&nbsp;&lt;/row&gt;<br/>");
   }
   html.push("&lt;/rows&gt;<br/>");
   return html.join("");
