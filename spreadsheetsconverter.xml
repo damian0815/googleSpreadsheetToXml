@@ -142,7 +142,8 @@ function convertToXML(data) {
       var columnLabel = data.getColumnLabel(col);
 
       var formattedValue = data.getFormattedValue(row, col);
-      formattedValue = escapeHtml(formattedValue);
+	  //formattedValue = escapeHtml(formattedValue);
+	  formattedValue=formattedValue.split("&").join("&amp;").split( "<").join("&lt;").split(">").join("&gt;").split("\"").join("&quot;").split("'").join("&apos;");
 
 	  rowObj.push("&nbsp; &nbsp; &nbsp; &nbsp; &lt;" + columnLabel + "&gt;" + formattedValue + "&lt;/" + columnLabel + "&gt;<br/>");
     }
