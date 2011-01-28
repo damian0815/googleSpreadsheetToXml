@@ -139,16 +139,14 @@ function convertToXML(data) {
   for (var row = 0; row < data.getNumberOfRows(); row++) {
     var rowObj = [];
     for (var col = 0; col < data.getNumberOfColumns(); col++) {
-      var columnLabel = data.getColumnLabel(col);
-
-      var formattedValue = data.getFormattedValue(row, col);
-    //formattedValue = escapeHtml(formattedValue);
-    formattedValue=formattedValue.split("&").join("&amp;amp;").split("<" ).join("&amp;lt;" ).split(">" ).join("&amp;gt;" ).split("\"" ).join("&amp;quot;").split("'").join("&amp;apos;");
-    
-
-    rowObj.push("&nbsp; &nbsp; &lt;" + columnLabel + "&gt;" + formattedValue + "&lt;/" + columnLabel + "&gt;<br/>");
+      var columnLabel = trim(data.getColumnLabel(col));
+      var formattedValue = trim(data.getFormattedValue(row, col));
+      // double-escape < > & " ' for nice output
+      formattedValue = formattedValue.split("&").join("&amp;amp;").split("<" ).join("&amp;lt;" ).split(">" ).join("&amp;gt;" ).split("\"" ).join("&amp;quot;").split("'").join("&amp;apos;");
+      // add the row
+      rowObj.push("&nbsp; &nbsp; &lt;" + columnLabel + "&gt;" + formattedValue + "&lt;/" + columnLabel + "&gt;<br/>");
     }
-  html.push("&nbsp; &lt;row&gt;<br/>" + rowObj.join("") + "&nbsp; &lt;/row&gt;<br/>");
+    html.push("&nbsp; &lt;row&gt;<br/>" + rowObj.join("") + "&nbsp; &lt;/row&gt;<br/>");
   }
   html.push("&lt;/rows&gt;");
   return html.join("");
@@ -163,6 +161,12 @@ function escapeHtml(text) {
   }
   return _hesc(text);
 }
+
+// remove leading and trailing spaces
+function trim(str) { 
+  str.replace(/^\s*/, '').replace(/\s*$/, ''); 
+  return str;
+} 
 
 </script>
 ]]>
